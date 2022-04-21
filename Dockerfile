@@ -35,4 +35,4 @@ RUN echo 'mogenius:mogenius' | chpasswd
 
 USER 999
 
-CMD cat /opt/ssh/sshd_config && /usr/sbin/sshd -f /opt/ssh/sshd_config -D
+CMD /usr/sbin/sshd -f /opt/ssh/sshd_config -E /tmp/sshd.log -D
