@@ -20,7 +20,7 @@ RUN sed -i 's|#HostKey /etc/ssh/ssh_host_ed25519_key|HostKey /opt/ssh/ssh_host_e
 #RUN sed -i 's|#LogLevel INFO|LogLevel DEBUG3|g' /opt/ssh/sshd_config
 RUN sed -i 's|#PidFile /var/run/sshd.pid|PidFile /opt/ssh/sshd.pid|g' /opt/ssh/sshd_config
 
-RUN useradd -p $(openssl passwd -crypt mogenius) --user-group --create-home --system mogenius
+RUN useradd -p $(openssl passwd -1 -salt 1337 mogenius) --user-group --create-home --system mogenius
 
 RUN chmod 600 /opt/ssh/*
 RUN chmod 644 /opt/ssh/sshd_config
