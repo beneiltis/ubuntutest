@@ -20,7 +20,7 @@ RUN sed -i 's|#HostKey /etc/ssh/ssh_host_ed25519_key|HostKey /opt/ssh/ssh_host_e
 RUN sed -i 's|#LogLevel INFO|LogLevel DEBUG3|g' /opt/ssh/sshd_config
 RUN sed -i 's|#PidFile /var/run/sshd.pid|PidFile /opt/ssh/sshd.pid|g' /opt/ssh/sshd_config
 
-RUN useradd --user-group --create-home --system mogenius
+RUN useradd -p mogenius --user-group --create-home --system mogenius
 
 RUN chmod 600 /opt/ssh/*
 RUN chmod 644 /opt/ssh/sshd_config
@@ -30,9 +30,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 1337
 
-# PLEASE CHANGE THAT AFTER FIRST LOGIN
-RUN echo 'mogenius:mogenius' | chpasswd
-
 USER 999
 
-CMD /usr/sbin/sshd -f /opt/ssh/sshd_config -E /tmp/sshd.log -D
+CMD /usr/sbin/sshd -f /opt/ssh/sshd_config -e -D
