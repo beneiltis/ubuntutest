@@ -17,10 +17,10 @@ RUN sed -i 's/#Port 22/Port 1337/g' /opt/ssh/sshd_config
 RUN sed -i 's|#HostKey /etc/ssh/ssh_host_rsa_key|HostKey /opt/ssh/ssh_host_rsa_key|g' /opt/ssh/sshd_config
 RUN sed -i 's|#HostKey /etc/ssh/ssh_host_ecdsa_key|HostKey /opt/ssh/ssh_host_ecdsa_key|g' /opt/ssh/sshd_config
 RUN sed -i 's|#HostKey /etc/ssh/ssh_host_ed25519_key|HostKey /opt/ssh/ssh_host_ed25519_key|g' /opt/ssh/sshd_config
-RUN sed -i 's|#LogLevel INFO|LogLevel DEBUG3|g' /opt/ssh/sshd_config
+#RUN sed -i 's|#LogLevel INFO|LogLevel DEBUG3|g' /opt/ssh/sshd_config
 RUN sed -i 's|#PidFile /var/run/sshd.pid|PidFile /opt/ssh/sshd.pid|g' /opt/ssh/sshd_config
 
-RUN useradd -p mogenius --user-group --create-home --system mogenius
+RUN useradd -p $(openssl passwd -crypt mogenius) --user-group --create-home --system mogenius
 
 RUN chmod 600 /opt/ssh/*
 RUN chmod 644 /opt/ssh/sshd_config
