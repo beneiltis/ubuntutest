@@ -1,5 +1,4 @@
 # CREATED WITH THE HELP OF THIS AWSOME EXAMPLE: https://www.golinuxcloud.com/run-sshd-as-non-root-user-without-sudo/
-
 FROM ubuntu:18.04
 
 RUN apt-get update
