@@ -22,7 +22,6 @@ RUN sed -ri 's/PidFile \/opt\/ssh\/sshd.pid/#PidFile \/var\/run\/sshd.pid/g' /op
 
 RUN useradd --user-group --create-home --system mogenius
 
-
 RUN chmod 600 /opt/ssh/*
 RUN chmod 644 /opt/ssh/sshd_config
 RUN chown -R 999:999 /opt/ssh
